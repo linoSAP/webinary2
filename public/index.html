@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription Webinaire - Solutions Innovantes Afrique</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- En-tête dynamique -->
+        <header class="animate__animated animate__fadeIn">
+            <div class="header-gradient">
+                <h1>Inscription au Webinaire Tech</h1>
+                <p class="subtitle">Découvrez les solutions logicielles révolutionnaires pour l'Afrique</p>
+                <div class="stats-badge">
+                    <span id="inscriptionCount">Chargement...</span> participants déjà inscrits
+                </div>
+                <p class="subtitle">Vendredi 11 Avril 2025</p>
+<h4 class="program-title"> au programme</h4>
+                <ul class="program-section">
+                    <li><strong>Présentation de Nos Solutions</strong> – Deux solutions logicielles innovantes, conçues de A à Z, déjà utilisées par de nombreuses structures pour optimiser leur productivité.</li>
+                    <li><strong>Accès aux Solutions</strong> – Découvrez comment vous procurer ces solutions clés en main et commencez a vous faire des benefices recurents, nous avons fait tout le travail pour vous .</li>
+                    <li><strong>Formation Certifiante</strong> – Une opportunité unique de se former au développement d’applications web et mobiles, avec certification à l’appui.</li>
+                    <li><strong>Session Questions / Réponses</strong> – Un échange interactif pour répondre à toutes vos préoccupations et approfondir les sujets qui vous intéressent.</li>
+                </ul>
+            </div>
+        </header>
+        <form id="inscriptionForm">
+            <!-- Section Informations Personnelles -->
+            <fieldset class="form-section">
+                <legend>Informations Personnelles</legend>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nom">Nom*</label>
+                        <input type="text" id="nom" name="nom" required class="modern-input">
+                        <div class="input-underline"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prenom">Prénom*</label>
+                        <input type="text" id="prenom" name="prenom" required class="modern-input">
+                        <div class="input-underline"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email*</label>
+                    <input type="email" id="email" name="email" required class="modern-input">
+                    <div class="input-underline"></div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Âge</label>
+                        <input type="number" id="age" name="age" min="18" max="99" class="modern-input">
+                        <div class="input-underline"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profession">Profession</label>
+                        <input type="text" id="profession" name="profession" class="modern-input">
+                        <div class="input-underline"></div>
+                    </div>
+                </div>
+            </fieldset>
+            
+            <!-- Section Localisation -->
+            <fieldset class="form-section">
+                <legend>Localisation</legend>
+                
+                <div class="form-group">
+                    <label for="pays">Pays*</label>
+                    <select id="pays" name="pays" required class="modern-select">
+                        <option value="">Sélectionnez votre pays</option>
+                        <!-- Afrique Centrale -->
+                        <optgroup label="Afrique Centrale">
+                            <option value="cameroun">Cameroun</option>
+                            <option value="gabon">Gabon</option>
+                            <option value="rdc">République Démocratique du Congo</option>
+                            <option value="congo">Congo</option>
+                            <option value="tchad">Tchad</option>
+                            <option value="centrafrique">République Centrafricaine</option>
+                            <option value="guinee-equatoriale">Guinée Équatoriale</option>
+                        </optgroup>
+                        <!-- Afrique de l'Ouest -->
+                        <optgroup label="Afrique de l'Ouest">
+                            <option value="senegal">Sénégal</option>
+                            <option value="cote-ivoire">Côte d'Ivoire</option>
+                            <option value="nigeria">Nigeria</option>
+                            <option value="ghana">Ghana</option>
+                            <option value="benin">Bénin</option>
+                            <option value="togo">Togo</option>
+                            <option value="mali">Mali</option>
+                            <option value="burkina-faso">Burkina Faso</option>
+                            <option value="niger">Niger</option>
+                            <option value="guinee">Guinée</option>
+                        </optgroup>
+                        <optgroup label="Afrique de l'Ouest">
+                            <option value="senegal">Autre pays non mentionné</option>
+                        </optgroup>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="ville">Ville</label>
+                    <input type="text" id="ville" name="ville" class="modern-input">
+                    <div class="input-underline"></div>
+                </div>
+            </fieldset>
+            
+            <!-- Section Professionnelle -->
+            <fieldset class="form-section">
+                <legend>Informations Professionnelles</legend>
+                
+                <div class="form-group">
+                    <label>Revenu actuel (fourchette)</label>
+                    <select id="revenu" name="revenu" class="modern-select">
+                        <option value="">Non précisé</option>
+                        <option value="moins-100k">0 de 100k FCFA</option>
+                        <option value="moins-500k">100K de 500k FCFA</option>
+                        <option value="500k-1m">500k - 1M FCFA</option>
+                        <option value="1m-2m">1M - 2M FCFA</option>
+                        <option value="plus-2m">Plus de 2M FCFA</option>
+                    </select>
+                </div>
+                
+                <div class="form-group checkbox-group modern-checkbox">
+                    <input type="checkbox" id="programmeur" name="programmeur">
+                    <label for="programmeur">
+                        <span class="checkmark"></span>
+                        Êtes-vous développeur ou technicien informatique ?
+                    </label>
+                </div>
+            </fieldset>
+            
+            <!-- Section Expérience -->
+            <fieldset class="form-section">
+                <legend>Expérience avec nos webinaires</legend>
+                
+                <div class="form-group">
+                    <label>Avez-vous déjà assisté à ce type de conférence ?</label>
+                    <div class="radio-group modern-radio">
+                        <label>
+                            <input type="radio" name="conference" value="oui">
+                            <span class="radio-button"></span>
+                            Oui
+                        </label>
+                        <label>
+                            <input type="radio" name="conference" value="non" checked>
+                            <span class="radio-button"></span>
+                            Non
+                        </label>
+                    </div>
+                    
+                    <div id="conference-details" class="hidden">
+                        <label for="conference-description">Laquelle ? (description)</label>
+                        <textarea id="conference-description" name="conference-description" rows="3" class="modern-textarea"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            
+            <button type="submit" class="submit-btn pulse-on-hover">
+                <span>Valider mon inscription</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </form>
+        
+        <div id="confirmation" class="hidden animate__animated animate__fadeIn">
+            <div class="confirmation-card">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.86" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 4L12 14.01L9 11.01" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h2>Félicitations !</h2>
+                <p>Votre inscription au webinaire a bien été enregistrée.</p>
+                <p>Vous recevrez un email de confirmation avec les détails de connexion.</p>
+                
+                <div class="whatsapp-group">
+                    <p>Rejoignez dès maintenant notre groupe WhatsApp pour ne rien manquer :</p>
+                    <a href="#" id="whatsappLink" class="whatsapp-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                        Rejoindre le groupe
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Admin Dashboard Floating Button -->
+    <a href="/admin/login" class="admin-btn" title="Tableau de bord admin">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.325 4.31799C11.1621 3.45399 12.3879 3.45399 13.225 4.31799L19.675 10.931C20.5121 11.795 20.5121 13.056 19.675 13.92L13.225 20.533C12.3879 21.397 11.1621 21.397 10.325 20.533L3.875 13.92C3.03795 13.056 3.03795 11.795 3.875 10.931L10.325 4.31799Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </a>
+    
+    <script src="script.js"></script>
+</body>
+</html>
