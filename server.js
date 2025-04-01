@@ -1,6 +1,7 @@
 // Importation des modules nécessaires
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
+const SQLiteStore = require('connect-sqlite3')(session);
 const bodyParser = require('body-parser');
 const path = require('path');
 const session = require('express-session');
@@ -14,6 +15,7 @@ const app = express();
 // Configuration de la sécurité avec Helmet
 app.use(helmet());
 
+
 // Middleware pour parser les requêtes JSON et URL-encoded
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -22,14 +24,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configuration des sessions
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'HXovmi6K69GOhCDt6eSFXmIxVWK45Cj7t1IrbtyAyDxUguf0Hrx6KfE670DTskeZ', // À remplacer dans .env
-    resave: false,
+    secret: process.env.SESSION_SECRET,
+    resave: true, // Changé à true
     saveUninitialized: false,
-    cookie: { 
-        secure: process.env.NODE_ENV === 'production', // HTTPS en production
-        maxAge: 24 * 60 * 60 * 1000 // 24 heures
-    }
-}));
+    cookie: {
+      secure: true, // Force HTTPS
+      sameSite: 'none', // Nécessaire pour Vercel
+      maxAge: 24 * 60 * 60 * 1000
+    },
+    store: new SQLiteStore({ // Ajoutez ceci
+      db: 'sessions.db',
+      dir: '/tmp'
+    })
+  }));
 
 // Limite de taux pour les routes sensibles
 const loginLimiter = rateLimit({
@@ -86,6 +93,13 @@ const requireAuth = (req, res, next) => {
 // Mot de passe hashé (à générer avec generate-hash.js)
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || '$2a$10$nkVsuqHsrJOOyM4ahZBILeT3.s4iGfxrmGRmd7OKk2I3/Pk2AKtTi';
 
+
+app.set('trust proxy', 1); // Important pour Vercel
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 // Routes publiques
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
