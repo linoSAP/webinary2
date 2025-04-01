@@ -10,32 +10,26 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
-    {
-      "src": "/admin/login",
-      "dest": "server.js"
-    },
-    {
-      "src": "/admin/logout",
-      "dest": "server.js"
-    },
-    {
-      "src": "/admin",
-      "dest": "server.js"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "public/$1"
-    }
-  ],
   "rewrites": [
     {
+      "source": "/admin/login",
+      "destination": "/server.js"
+    },
+    {
+      "source": "/admin/logout",
+      "destination": "/server.js"
+    },
+    {
       "source": "/admin",
-      "destination": "/admin"
+      "destination": "/server.js"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/server.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/public/$1"
     }
   ]
 }
