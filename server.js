@@ -18,12 +18,11 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Servir les fichiers statiques depuis le dossier 'public'
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Configuration des sessions
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'votre_secret_tres_securise', // À remplacer dans .env
+    secret: process.env.SESSION_SECRET || 'HXovmi6K69GOhCDt6eSFXmIxVWK45Cj7t1IrbtyAyDxUguf0Hrx6KfE670DTskeZ', // À remplacer dans .env
     resave: false,
     saveUninitialized: false,
     cookie: { 
@@ -254,6 +253,9 @@ app.get('/api/inscriptions/count', (req, res) => {
     });
 });
 
+
+// Servir les fichiers statiques depuis le dossier 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 // Gestion des erreurs
 app.use((req, res) => {
     res.status(404).send('Page non trouvée');
