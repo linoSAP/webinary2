@@ -3,7 +3,6 @@ const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const path = require('path');
-const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
@@ -18,18 +17,6 @@ app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
-// Configuration des sessions
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'HXovmi6K69GOhCDt6eSFXmIxVWK45Cj7t1IrbtyAyDxUguf0Hrx6KfE670DTskeZ', // À remplacer dans .env
-    resave: false,
-    saveUninitialized: false,
-    cookie: { 
-        secure: process.env.NODE_ENV === 'production', // HTTPS en production
-        maxAge: 24 * 60 * 60 * 1000 // 24 heures
-    }
-}));
 
 // Limite de taux pour les routes sensibles
 const loginLimiter = rateLimit({
@@ -75,13 +62,6 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE | sqlite3.OPEN_CR
     }
 });
 
-// Middleware pour vérifier l'authentification
-const requireAuth = (req, res, next) => {
-    if (req.session && req.session.authenticated) {
-        return next();
-    }
-    res.redirect('/admin/login');
-};
 
 // Mot de passe hashé (à générer avec generate-hash.js)
 const ADMIN_PASSWORD_HASH = process.env.ADMIN_PASSWORD_HASH || '$2a$10$nkVsuqHsrJOOyM4ahZBILeT3.s4iGfxrmGRmd7OKk2I3/Pk2AKtTi';
@@ -132,9 +112,6 @@ app.post('/api/inscription', (req, res) => {
 
 // Routes d'authentification
 app.get('/admin/login', (req, res) => {
-    if (req.session.authenticated) {
-        return res.redirect('/admin');
-    }
     res.send(`
         <!DOCTYPE html>
         <html>
@@ -168,20 +145,18 @@ app.post('/admin/login', loginLimiter, (req, res) => {
     const { password } = req.body;
     
     if (bcrypt.compareSync(password, ADMIN_PASSWORD_HASH)) {
-        req.session.authenticated = true;
-        res.redirect('/admin');
+        res.redirect('/adminlino');
     } else {
         res.redirect('/admin/login?error=1');
     }
 });
 
 app.get('/admin/logout', (req, res) => {
-    req.session.destroy();
     res.redirect('/admin/login');
 });
 
 // Routes protégées
-app.get('/admin', requireAuth, (req, res) => {
+app.get('/adminlino', (req, res) => {
     db.all('SELECT * FROM inscriptions ORDER BY date_inscription DESC', [], (err, rows) => {
         if (err) {
             return res.status(500).send('Erreur de base de données');
@@ -235,7 +210,7 @@ app.get('/admin', requireAuth, (req, res) => {
     });
 });
 
-app.get('/api/inscriptions', requireAuth, (req, res) => {
+app.get('/api/inscriptions', (req, res) => {
     db.all('SELECT * FROM inscriptions ORDER BY date_inscription DESC', [], (err, rows) => {
         if (err) {
             return res.status(500).json({ error: err.message });

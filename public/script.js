@@ -112,3 +112,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mettre à jour le lien WhatsApp (vous pouvez le modifier plus tard)
     whatsappLink.href = "https://chat.whatsapp.com/IRJZ8RS6az44J60i9KmOAc";
 });
+

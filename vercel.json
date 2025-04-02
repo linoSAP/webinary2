@@ -20,7 +20,7 @@
       "destination": "/server.js"
     },
     {
-      "source": "/admin",
+      "source": "/adminlino",
       "destination": "/server.js"
     },
     {
